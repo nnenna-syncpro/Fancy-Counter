@@ -1,4 +1,6 @@
 // cleaner code to have all selectors in one place
+const counterEl = document.querySelector('.counter');
+const counterTitleEl = document.querySelector('.counter__title');
 const counterValueEl = document.querySelector('.counter__value');
 const increaseButtonEl = document.querySelector('.counter__button--increase');
 const decreaseButtonEl = document.querySelector('.counter__button--decrease');
@@ -14,8 +16,22 @@ function incrementCounterValue(){
     // increment counter value by 1++ for every click
     increasedCounterValue = currentCounterValueToNumber + 1;
 
+    //prevent counter value from being more than 5 
+    if(increasedCounterValue >5){
+        increasedCounterValue =5;
+
+        //if counter is more than 5:
+        //change background color, display message to buy pro version, and disable increase and decrease buttons
+        counterEl.classList.add('counter--limit');
+        counterTitleEl.innerHTML = "Limit! Buy <b>PRO</b> for > 5";
+
+        increaseButtonEl.disabled = true;
+        decreaseButtonEl.disabled = true;
+    }
+
     //set and display new counter value
     counterValueEl.textContent = increasedCounterValue;
+    increaseButtonEl.blur();
 }
 
 increaseButtonEl.addEventListener('click', incrementCounterValue);
@@ -39,11 +55,23 @@ decreaseButtonEl.addEventListener('click', function(){
 
     //set and display new counter value
     counterValueEl.textContent = decreasedCounterValue;
+    decreaseButtonEl.blur();
 });
 
 resetButtonEl.addEventListener("click", function(){
     //set current value back to 0
     counterValueEl.textContent = 0;
+
+    //reset counter background color, title and re-enable buttons after counter hits limit of 5
+    counterEl.classList.remove('counter--limit');
+    counterTitleEl.textContent = "Fancy Counter";
+
+    increaseButtonEl.disabled = false;
+    decreaseButtonEl.disabled = false;
+
+    //after clicking the reset button it becomes focused, so keydown on spacebar immmediately after the reset button is immediately undone
+    //unfocus button after click
+    resetButtonEl.blur();
 });
 
 

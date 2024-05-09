@@ -34,8 +34,12 @@ body{
     flex-direction: column;
     /* you cannot use justify-content: center with flex-direction: column because they switch. So to alighn horizontally you have to use align-items: center */
     align-items: center;
+    transition: all 0.4s;
 }
 
+.counter--limit{
+    background-color: #a3d11b;
+}
 .counter__title{
     opacity: 0.6;
     text-transform: uppercase;
