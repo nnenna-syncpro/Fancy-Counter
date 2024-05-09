@@ -1,0 +1,126 @@
+*{ 
+    /* removes default styling */
+    margin: 0;
+    padding: 0;
+     box-sizing: border-box; /*helps with setting a height and width of an element that includes the padding and border */
+}
+
+button{
+    all: unset; /* removes all default styling from all the buttons in 1 declaration */
+}
+
+body{
+    /* even though its already linked in the HTML, it still has to be set in CSS. If the font is not available, instruct browser to select any sans-serif font available on the users computer*/
+    font-family: 'Inter', sans-serif;
+
+    /* to make the color stretch to the bottm, we need to set the height of the body to be 100% of the viewport height */
+    height: 100vh;
+    background-image: radial-gradient(ellipse, #385300, #212900);
+
+    display: flex; /* you apply flex to the parent of the element you want to target */
+    justify-content: center; /* centers horizontally from the left and right */
+    align-items: center; /* centers from the top to bottom */
+}
+
+.counter{
+    background-color: #bef227;
+    width: 476px;
+    height: 615px;
+    border-radius: 12px;
+    /* box shadow parameters: offset, horizontally, blur, color, opacity % */
+    box-shadow: 0 25px 121px rgba(0,0,0, 0.5);
+    display: flex; /* default layout in flexbox is horizontal so all elements would sit in the same row */
+    /* for a vertical flow you have to change the direction to column */
+    flex-direction: column;
+    /* you cannot use justify-content: center with flex-direction: column because they switch. So to alighn horizontally you have to use align-items: center */
+    align-items: center;
+}
+
+.counter__title{
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* space out letters since its all   uppercase */
+    width: 200px; /* restrain width so that words dont sit side by side */
+    text-align: center;
+    line-height: 0.9;
+    font-weight: 500;
+    font-size: 32px;
+    margin-top: 60px; /* margin-top gives space between the top of the title and the top of the body */
+}
+.counter__value{
+    color: #1d2507;
+    font-size: 200px;
+    font-weight: 600px;
+    margin-top: 10px; /* margin-top gives space between the top of the number and the bottom of the title */
+}
+.counter__reset-button{
+    cursor: pointer;
+}
+.counter__reset-icon{
+    opacity: 0.3;
+    font-size: 35px;
+    transition: all 0.4s; /* to delay changes so that they appear smooth instead of instantaneously */
+}
+.counter__reset-icon:hover{
+    /* hover is called a pseudo class */
+    opacity: 0.5;
+}
+
+.counter__buttons{
+    background-color: #1d2507;
+    height: 116px;
+    width: 100%; /* so that buttons keep their full width despite being in flex display direction column */
+    margin-top: auto; /* for buttons to sit at the bottom of the body (special behaviour). 
+    However, the background coulor of the buttons are overflowing over the curved box radius of the main body, hence, each button needs its own curved radius in 1 corner. There is no border-bottom-radius: ; only border-bottom-right-radius: ; */
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;  /* put the buttons side by side */
+}
+.counter__button{
+    flex: 1; /* proportion of available space each element gets so that the buttons share the available space equally*/
+    
+    /* use flex to center icons in the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.counter__button:hover{
+    background-color: #212b06;
+}
+
+.counter__button--decrease{
+    border-right: 1px solid rgba(189,254,0, 0.15);
+}
+.counter__icon{
+    color: #bdfe00;
+    opacity: 0.9;
+    font-size: 40px;
+}
+.counter__icon--minus{
+
+}
+.counter__button--increase{
+    
+}
+.counter__icon--plus{
+
+}
+
+@media(max-width: 680px) or (max-height: 730px){
+    .counter{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .counter__title{
+        margin-top: 100px;
+    }
+
+    .counter__buttons{
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
